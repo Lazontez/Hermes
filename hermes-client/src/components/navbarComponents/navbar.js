@@ -3,7 +3,7 @@ import React from "react";
 
 const navbarStyles = {
     "background" : "black" ,
-    "text-align": "center"
+    "textAlign": "center"
 
 
 
@@ -11,15 +11,18 @@ const navbarStyles = {
 const navbarHeaderCss = {
     // "margin-left" : "400px" ,
     "color" : "#df8026" ,
-    "text-decoration" : "line-through"
+    "textDecoration" : "line-through"
+}
+const NavBarLinksCss = {
+    "text-align" : "left"
 }
 const Navbar = () => {
     return (
         <nav className="navbar navbar-dark" style={navbarStyles}>
-            <a class="navbar-brand" href="#">
+            <a className="navbar-brand" href="#">
                 <img src="/images/Hermes Logo.png" width="70" height="70" alt="" />
             </a>
-            <a className="navbar-brand" href="#" style={navbarHeaderCss}><h1>HERMES</h1></a>
+            <a className="navbar-brand" href="#" style={navbarHeaderCss}><h1>VITAL</h1></a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>

@@ -74,6 +74,7 @@ lodo.route("/api/business/:id")
             if (err) { res.send(err) }
             else { console.log(result); res.send(result) }
         });
+        console.log("TYPE: DELETE &&& LOCATION: /api/business/:id")
     });
 
 // "/api/search/:businessName"
@@ -85,6 +86,8 @@ lodo.route("/api/search/:businessName")
            console.log(results)
            res.json(results)
        }).catch(err=>res.send(err));
+    
+       console.log("TYPE: GET &&& LOCATION: /api/search/:businessName")
 
    })
 

@@ -39,6 +39,7 @@ class MainFeed extends React.Component {
             if (res) {
 
                 console.log("Client Retrieved Data")
+                console.log(res)
                 //and return the found data to the state.data array 
                 that.setState({ data: res.data })
 
@@ -68,13 +69,13 @@ class MainFeed extends React.Component {
             this.state.data.map((data) => {
                 return (
                     <span ><div id={data._id} className="media" style={mediaCardCss}>
-                        <img src="hermes-client/public/images/Hermes Logo.png" className="mr-3" alt="..." />
+                        <img src="https://picsum.photos/64/64" className="mr-3" alt="..." />
                         {/* <i class='fas fa-city' style='font-size:36px'></i> */}
 
                         {/* <div>{data.CompanyWebsite}</div> */}
                         <div className="media-body" style={{ "fontSize": "12px" }}>
-                            <h5 className="mt-0">{data.BusinessName}</h5>
-                            <span >{data.CompanyBio}</span>
+                           <a style={{"color":"black"}}href={"/business/"+data._id}><h5 className="mt-0">{data.BusinessName}</h5></a>  
+                            <span style={{"fontFamily": "'Fira Sans', sans-serif"}}>{data.CompanyBio}</span>
                         </div>
                     </div>
                         <hr style={{"background":"black" , "width":"400px"}}></hr>

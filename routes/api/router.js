@@ -57,7 +57,7 @@ lodo.route("/api/business/:id")
             _id: id
 
         }).then((results) => {
-
+            console.log("TYPE: GET &&& LOCATION: /api/business/:id")
             console.log(results);
             res.json(results);
 
@@ -65,7 +65,7 @@ lodo.route("/api/business/:id")
             console.log(err);
             res.send(err);
         });
-        console.log("TYPE: GET &&& LOCATION: /api/nearby/")
+       
     })
     // This will be to delete a business
     .delete((req, res) => {
@@ -82,7 +82,7 @@ lodo.route("/api/business/:id")
 lodo.route("/api/search/:businessName")
    .get((req , res)=>{
        const businessName = req.params.businessName
-       Businesses.find({BusinessName:businessName}).then(results=>{
+       Businesses.find({BusinessName: new RegExp('^'+businessName+'$', "i")}).then(results=>{
            console.log(results)
            res.json(results)
        }).catch(err=>res.send(err));

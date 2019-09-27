@@ -11,31 +11,34 @@ const navbarStyles = {
 const navbarHeaderCss = {
     // "margin-left" : "400px" ,
     "color" : "#df8026" ,
-    "textDecoration" : "line-through"
+    "textDecoration" : "line-through" ,
+    "fontFamily":" 'Bangers' , cursive"
+
+
 }
-const NavBarLinksCss = {
-    "text-align" : "left"
-}
-const Navbar = () => {
+const Navbar = (props) => {
+    console.log(props)
     return (
+        <div>
+            <div style={{"height":"20px","backgroundColor":"rgb(223, 128, 38)","textAlign":"right"}}></div>
         <nav className="navbar navbar-dark" style={navbarStyles}>
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
                 <img src="/images/Hermes Logo.png" width="70" height="70" alt="" />
             </a>
-            <a className="navbar-brand" href="#" style={navbarHeaderCss}><h1>VITAL</h1></a>
+            <a className="navbar-brand" href="/" style={navbarHeaderCss}><h1>VITAL</h1></a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav" style={{"color" : "white"}}>
                 <ul className="navbar-nav" >
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#" style={{"color" : "white"}}>Local Feed<span className="sr-only">(current)</span></a>
+                    <li className="nav-item active" style={{}}>
+                        <a className="nav-link" href="/" style={{"color" : "white" , "marginLeft":"-50px"}}>Local Feed</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#" style={{"color" : "white"}}>Your Page</a>
+                        <a className="nav-link" href={"/business/"+props.userId} style={{"color" : "white", "marginLeft":"-50px"}}>Your Page</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#" style={{"color" : "white"}}>Create a Post</a>
+                        <a className="nav-link" href="/business/create" style={{"color" : "white", "marginLeft":"-50px"}}>New Business</a>
                     </li>
                     
                 </ul>
@@ -43,6 +46,7 @@ const Navbar = () => {
             </div>
             
         </nav>
+        </div>
     )
 }
 export default Navbar

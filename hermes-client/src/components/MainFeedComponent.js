@@ -1,15 +1,13 @@
 import React from "react";
 import axios from "axios";
 class MainFeed extends React.Component {
+
     state = {
         data: []
     };
     
-
-    
     componentDidMount() {
         this.getPosition()
-        console.log(this.state)
     }
 
     getPosition(){
@@ -27,8 +25,6 @@ class MainFeed extends React.Component {
         }
     }
 
-
-
     retrieveLocal = (long, latt) => {
         //Bandaid Fix to Scoping Issue when calling this.setState inside then axios call
         const that = this
@@ -39,7 +35,7 @@ class MainFeed extends React.Component {
             if (res) {
 
                 console.log("Client Retrieved Data")
-                console.log(res)
+                // console.log(res)
                 //and return the found data to the state.data array 
                 that.setState({ data: res.data })
 

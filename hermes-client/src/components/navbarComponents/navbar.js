@@ -17,7 +17,7 @@ const navbarHeaderCss = {
 
 }
 const Navbar = (props) => {
-    console.log(props)
+    // Html Element for Navbar
     return (
         <div>
             <div style={{"height":"20px","backgroundColor":"rgb(223, 128, 38)","textAlign":"right"}}></div>

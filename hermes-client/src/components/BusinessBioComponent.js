@@ -1,37 +1,68 @@
 import React from "react";
 import axios from "axios";
-
+import AddressComponent from "./addressComponent"
 
 
 class CompanyBio extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     state = {
         companyData: []
     }
-    componentDidMount() {
-        this.getCompanyInfo()
+
+    getPosition() {
+        const that = this
+        if (navigator.geolocation) {
+ 
+            navigator.geolocation.getCurrentPosition((position) => {
+                const longitude = position.coords.longitude
+                const latitude = position.coords.latitude
+                //Sets the state 
+                this.setState({loggedInLatt :latitude , loggedInLong : longitude} , console.log(this.state))
+                this.getCompanyInfo()
+            })
+        }
+        else {
+            alert("Please allow us to use location for main functionality of App")
+        }
     }
+
+    componentDidMount() {
+        this.getPosition()
+    }
+
     getCompanyInfo = () => {
         let id = this.props.userId
         axios.get("/api/business/" + id).then(res => {
-            console.log(res.data[0])
-            console.log(this)
-            this.setState({ companyData: res.data[0] }, console.log(this.state))
-        })
+            // console.log(res.data[0])
+            // console.log(this)
+            this.setState({ companyData: res.data[0] })
+            //Business's Longitude
+            const bLong = this.state.companyData.location.coordinates[0]
+            //Business's Latitude
+            const bLatt = this.state.companyData.location.coordinates[1]
+            
+            //Api call to bing maps api to get distance matrics data between two locations
+            axios
+            .get("https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins="+this.state.loggedInLatt+","+this.state.loggedInLong+"&destinations="+bLatt+","+bLong+"&travelMode=driving&distanceUnit=mi"
+            +"&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
+                .then(res =>{
+                    // console.log(res.data)
+                    //Set the state of miles away to the results from the api call
+                    this.setState({milesAway : res.data.resourceSets[0].resources[0].results[0].travelDistance})
+                })
+                //Exception Handling
+                .catch(err =>{console.log(err)})
+                })
 
     }
     render() {
 
         return (
             <div>
-                <div className="jumbotron" style={{ "height": "350px", "backgroundColor": "white", "borderBottom": "1px solid black", "padding": "50px" }}>
+                <div className="jumbotron" style={{ "height": "350px", "backgroundColor": "white", "borderBottom": "1px solid black", "padding": "50px", "backgroundImage": "linear-gradient(to top,gray 0% ,white 80%)" }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-4">
-                                <img style={{ "float": "left" , "width":"100%"}} src="https://picsum.photos/250/150"></img>
+                                <img style={{ "float": "left", "width": "100%" }} alt="Company View" src="https://picsum.photos/250/150"></img>
                             </div>
                             <div id="companyBio" className="col-md-8">
                                 <h6>CompanyBio</h6>
@@ -40,12 +71,12 @@ class CompanyBio extends React.Component {
                             </div>
                         </div>
                         <div className="subInfo" >
-                        <div className="row" style={{"marginLeft":"10px"}}>
-                            <div>Website: {this.state.companyData.CompanyWebsite}</div>
-                        </div>
-                        <div className="row" style={{"marginLeft":"10px"}}>
-                            <div>Address: </div>
-                        </div>
+                            <div className="row" style={{ "marginLeft": "10px" }}>
+                                <div style={{ "color": "black" }}>Website: <a style={{ "color": "black" }} href={this.state.companyData.CompanyWebsite}>{this.state.companyData.CompanyWebsite}</a></div>
+                            </div>
+                            <div data={this.state.companyData} className="row" style={{ "marginLeft": "10px" }}>
+                                <AddressComponent milesAway={this.state.milesAway} />
+                            </div>
                         </div>
                     </div>
                 </div>

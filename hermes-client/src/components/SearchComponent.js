@@ -6,9 +6,6 @@ import {Link} from "react-router-dom"
 class SearchComponent extends React.Component {
 
 
-    constructor(props) {
-        super(props)
-    }
     state = {
         searchedData: [],
         searchRequest: ""
@@ -17,8 +14,7 @@ class SearchComponent extends React.Component {
 
     handleSearchRequest = (event) => {
         const inputValue = event.target.value
-        const stateValue = this.state.searchRequest
-        this.setState({ searchRequest: inputValue }, () => { console.log(this.state) })
+        this.setState({ searchRequest: inputValue })
 
         // console.log(searchRequest)
     }
@@ -67,6 +63,7 @@ class SearchComponent extends React.Component {
                 </div>
                 <div className="resultsDisplay">
                     {this.state.searchedData.map((data) => {
+                        
                         return (
                             <div name={data.BusinessName} className="card text-white bg-light mb-3">
                                 <div className="card-header" style={{ "color": "black",  }}><h5 style={{"float": "left"}}>{data.BusinessName}</h5> - <em style={{"display":"inline"}}className="card-title" style={{ "color": "black", "fontSize": "small" }}>{data.Niche}</em></div>

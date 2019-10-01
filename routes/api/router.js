@@ -1,5 +1,8 @@
 const lodo = require("express").Router();
 const Businesses = require("../../models/Business");
+const axios = require('axios');
+require('dotenv').config();
+
 console.log("inside the routes")
 
 // "/api/nearby"
@@ -32,20 +35,20 @@ lodo.route("/api/nearby/:long/:latt")
 // "/api/business"
 //****This is the route that will allow you to create a business in the database */
 lodo.route("/api/business")
-    .post((req , res)=>{
+    .post((req, res) => {
         const newBusiness = new Businesses(req.body)
 
-        newBusiness.save((err , product)=>{
-         if (err) {
-           throw err
-         }
-         else {
-           console.log("saved")
-           console.log(product)
-           res.json(product)
-         }
-         
-       }); 
+        newBusiness.save((err, product) => {
+            if (err) {
+                throw err
+            }
+            else {
+                console.log("saved")
+                console.log(product)
+                res.json(product)
+            }
+
+        });
     })
 
 //  "/api/business/:id"
@@ -65,7 +68,7 @@ lodo.route("/api/business/:id")
             console.log(err);
             res.send(err);
         });
-       
+
     })
     // This will be to delete a business
     .delete((req, res) => {
@@ -80,15 +83,33 @@ lodo.route("/api/business/:id")
 // "/api/search/:businessName"
 //****This will used to search for a business name in the database */
 lodo.route("/api/search/:businessName")
-   .get((req , res)=>{
-       const businessName = req.params.businessName
-       Businesses.find({BusinessName: new RegExp('^'+businessName+'$', "i")}).then(results=>{
-           console.log(results)
-           res.json(results)
-       }).catch(err=>res.send(err));
-    
-       console.log("TYPE: GET &&& LOCATION: /api/search/:businessName")
+    .get((req, res) => {
+        const businessName = req.params.businessName
+        Businesses.find({ BusinessName: new RegExp('^' + businessName + '$', "i") }).then(results => {
+            console.log(results)
+            res.json(results)
+        }).catch(err => res.send(err));
 
-   })
+        console.log("TYPE: GET &&& LOCATION: /api/search/:businessName")
+
+    })
+lodo.route("/api/getDistanceBetween/:loggedInLatt/:loggedInLong/:bLatt/:bLong")
+    .get((req, res) => {
+        const loggedInLatt = req.params.loggedInLatt
+        const loggedInLong = req.params.loggedInLong
+        const bLatt = req.params.bLatt
+        const bLong = req.params.bLong
+        axios
+            .get("https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=" + loggedInLatt + "," + loggedInLong + "&destinations=" + bLatt + "," + bLong + "&travelMode=driving&distanceUnit=mi"
+                + "&key="+process.env.APIKEY)
+            .then(results => {
+                // console.log(res.data)
+                //Set the state of miles away to the results from the api call
+                res.json(results.data.resourceSets[0].resources[0].results[0])
+            })
+            //Exception Handling
+            .catch(err => { console.log(err) })
+    })
+
 
 module.exports = lodo;

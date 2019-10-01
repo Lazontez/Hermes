@@ -38,7 +38,7 @@ const Navbar = (props) => {
                         <a className="nav-link" href={"/business/"+props.userId} style={{"color" : "white", "marginLeft":"-50px"}}>Your Page</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/business/create" style={{"color" : "white", "marginLeft":"-50px"}}>New Business</a>
+                        <a className="nav-link" href="/business/signup" style={{"color" : "white", "marginLeft":"-50px"}}>New Business</a>
                     </li>
                     
                 </ul>

@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import AddressComponent from "./addressComponent"
 
-
 class CompanyBio extends React.Component {
     state = {
         companyData: []
@@ -42,12 +41,12 @@ class CompanyBio extends React.Component {
             
             //Api call to bing maps api to get distance matrics data between two locations
             axios
-            .get("https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins="+this.state.loggedInLatt+","+this.state.loggedInLong+"&destinations="+bLatt+","+bLong+"&travelMode=driving&distanceUnit=mi"
-            +"&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
+            .get("/api/getDistanceBetween/"+this.state.loggedInLatt+"/"+this.state.loggedInLong+"/"+bLatt+"/"+bLong)
                 .then(res =>{
                     // console.log(res.data)
                     //Set the state of miles away to the results from the api call
-                    this.setState({milesAway : res.data.resourceSets[0].resources[0].results[0].travelDistance})
+                    console.log(res.data)
+                    this.setState({milesAway : res.data.travelDistance})
                 })
                 //Exception Handling
                 .catch(err =>{console.log(err)})

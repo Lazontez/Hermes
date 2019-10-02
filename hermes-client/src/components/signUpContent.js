@@ -25,7 +25,7 @@ class SignUpContent extends React.Component {
                 <form style={{"padding":"20px"}}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputEmail4" >Business Name</label>
+                            <label htmlFor="inputEmail4" >Username</label>
                             <input type="text" className="form-control"  id="businessnameInput" placeholder="Business Name" />
                         </div>
 

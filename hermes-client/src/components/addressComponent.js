@@ -31,27 +31,6 @@ class milesAwayComponent extends React.Component {
             alert("Please allow us to use location for main functionality of App")
         }
     }
-   //Everytime the component is updated
-//    componentDidUpdate(){
-//        this.getPosition()
-//        //Business's Longitude
-//        const bLong = this.props.businessLocation.coordinates[0]
-//        //Business's Latitude
-//        const bLatt = this.props.businessLocation.coordinates[1]
-    
-//        //Api call to bing maps api to get distance matrics data between two locations
-//        axios
-//        .get("https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins="+this.state.loggedInLatt+","+this.state.loggedInLong+"&destinations="+bLatt+","+bLong+"&travelMode=driving&distanceUnit=mi"
-//        +"&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
-//         .then(res =>{
-//             // console.log(res.data)
-//             //Set the state of miles away to the results from the api call
-//             this.setState({milesAway : res.data.resourceSets[0].resources[0].results[0].travelDistance})
-//         })
-//         //Exception Handling
-//          .catch(err =>{console.log(err)})
-//        console.log(this.props.businessLocation.coordinates)
-//    }
     componentDidMount() {
         console.log(this.props)
     }

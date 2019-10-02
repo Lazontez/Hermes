@@ -10,6 +10,12 @@ const NewBusiness = new Schema({
     required: true,
     unique: false
   },
+  businessUserName: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
   //[longitude , latitude]
   location: {
     type: {
@@ -44,7 +50,7 @@ NewBusiness.index({
 })
 
 //Declare the the new business model as a model in mongoose
-const Businesses = mongoose.model("businesses", NewBusiness);
+const Businesses = mongoose.model("Businesses", NewBusiness);
 
 // console.log(Business)
 module.exports = Businesses;

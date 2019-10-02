@@ -1,7 +1,11 @@
 const lodo = require("express").Router();
 const Businesses = require("../../models/Business");
 const axios = require('axios');
+const User = require("../../models/User");
+// const jwt = require("jsonwebtoken");
+// const jwtSecret = require('./config/jwtConfig')
 require('dotenv').config();
+
 
 console.log("inside the routes")
 
@@ -36,6 +40,7 @@ lodo.route("/api/nearby/:long/:latt")
 //****This is the route that will allow you to create a business in the database */
 lodo.route("/api/business")
     .post((req, res) => {
+
         const newBusiness = new Businesses(req.body)
 
         newBusiness.save((err, product) => {
@@ -43,6 +48,9 @@ lodo.route("/api/business")
                 throw err
             }
             else {
+                
+                // User.findOne(_id : )
+
                 console.log("saved")
                 console.log(product)
                 res.json(product)

@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./pages/mainPage";
 import PersonalBusinessPage from "./pages/personalBusinessPage";
 import SignUp from "./pages/signUp"
+import UserSignIn from './pages/userSgnIn';
+import UserLogin from './pages/userLogin';
+
 
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
           <Route exact path="/business/Company website not available" component={Main} />
           <Route  exact path="/business/signup" component={SignUp} />
           <Route  exact path="/business/:id" component={PersonalBusinessPage} />
+          <Route  exact path="/authentication/signup" component={UserSignIn} />
+          <Route  exact path="/authentication/login" component={UserLogin} />
+
           
         </Switch>
       </div>

@@ -2,12 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes/api/router");
 const app = express();
+const jwt = require("jsonwebtoken");
+const jwtSecret = require('./config/jwtConfig')
+
+
 const PORT = process.env.PORT || 3001;
 const db = process.env.MONGODB_URI || "mongodb://localhost/HermesDataBase"
 const path = require("path")
 const passport = require("passport")
 require('./config/passport');
-const User = require("./models/user")
+const User = require("./models/User")
 
 
 //middleware
@@ -49,7 +53,8 @@ app.post('/loginUser', (req, res, next) => {
       }
     } else {
         User.findOne({ username: req.body.username
-        }).then(user => {
+        }).populate("Businesses").then(user => {
+          console.log(user);
           const token = jwt.sign({ id: user.id }, jwtSecret.secret, {
             expiresIn: 60 * 60,
           });

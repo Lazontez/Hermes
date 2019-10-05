@@ -10,7 +10,7 @@ const NewBusiness = new Schema({
     required: true,
     unique: false
   },
-  businessUserName: [
+  userId: [
     {
       type: Schema.Types.ObjectId,
       ref: "User"
@@ -32,6 +32,8 @@ const NewBusiness = new Schema({
   Niche: {
     type: String,
     required: true,
+    minlength: 1,
+    maxlength: 3
 
   },
   CompanyBio: {

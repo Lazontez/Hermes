@@ -40,7 +40,7 @@ app.post('/registerUser', (req, res, next) => {
 });
 
 app.post('/loginUser', (req, res, next) => {
-  passport.authenticate('login', (err, users, info) => {
+  passport.authenticate('login', (err, user, info) => {
     if (err) {
       console.error(`error ${err}`);
     }
@@ -52,18 +52,22 @@ app.post('/loginUser', (req, res, next) => {
         res.status(403).send(info.message);
       }
     } else {
-        User.findOne({ username: req.body.username
-        }).populate("Businesses").then(user => {
-          console.log(user);
+      console.log(user)
+        // User.findOne({ username: req.body.username
+        // }).populate("usersbusiness").exec((err, user) => {
+        //   console.log(user);
           const token = jwt.sign({ id: user.id }, jwtSecret.secret, {
             expiresIn: 60 * 60,
           });
           res.status(200).send({
             auth: true,
-            token,
+            token ,
+            // _someData : {
+            //   user : user
+            // },
             message: 'user found & logged in',
           });
-        });
+        // });
     }
   })(req, res, next);
 });

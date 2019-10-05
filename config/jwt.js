@@ -32,6 +32,7 @@ module.exports = {
           message: "Token is not valid"
         });
       } else {
+        req.params = authData.id
         next();
       }
     });

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 class SignUpContent extends React.Component {
 
@@ -30,8 +31,12 @@ class SignUpContent extends React.Component {
                     CompanyBio: that.state.inputCompanyBio,
                     CompanyWebsite: that.state.inputCompanyWebsite
                 }
+                console.log(generatedPoints)
                 // const gateKeeper = sessionStorage.getItem("jwt")
-                axios.post("/api/business", business).then(res => { console.log(res.data) }).catch(err => console.log(err))
+                axios.post("/api/business", business).then(res => {
+                     console.log(res.data)
+                     that.setState({newBusinessId:res.data._id,businessSubmitted : true})
+                 }).catch(err => console.log(err))
                 console.log(business)
             }).catch((err) => { console.error(err) })
     }
@@ -40,7 +45,7 @@ class SignUpContent extends React.Component {
         this.setState({ [stateKey]: event.target.value })
     }
     render() {
-        if (sessionStorage.getItem("jwt") !== null) {
+        if (sessionStorage.getItem("jwt") !== null && this.state.businessSubmitted === false) {
             return (
                 <div style={{ "backgroundColor": "white", "padding": "30px", "border": "1px solid #df8026 " }}>
                     <div style={{ "color": "grey", "borderBottom": "1px solid grey", "padding": "15px" }}>
@@ -146,10 +151,10 @@ class SignUpContent extends React.Component {
                         </div>
                         <div className="mb-3">
                             <label >Company Bio</label>
-                            <textarea className="form-control" onChange={this.handleInputChange} id="inputCompanyBio" placeholder=""></textarea>
+                            <textarea className="form-control" onChange={this.handleInputChange} height="100%" id="inputCompanyBio" placeholder=""></textarea>
                             <small id="passwordHelpBlock" style={{ "color": "#" }} className="form-text text-muted">
                                 <div>Character Count: {this.state.inputCompanyBio.length}</div>
-                                The company bio must be between 300 to 600 characters.
+                                The company bio must be between 400 to 800 characters.
                         </small>
                         </div>
                         <button type="submit" style={{ "backgroundColor": "black", "color": "#df8026" }} data-toggle="modal" className="btn">Sign Up</button>
@@ -159,6 +164,8 @@ class SignUpContent extends React.Component {
                 </div>
 
             )
+        }else if(this.state.businessSubmitted === true && this.state.newBusinessId !== ""){
+            return(<Redirect to={"/business/"+this.state.newBusinessId} />)
         }
 
     }

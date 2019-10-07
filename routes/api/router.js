@@ -45,7 +45,7 @@ lodo.route("/api/business")
                 throw err
             }
             else {
-                // User.findOne(_id : )
+                User.findOne({_id : req.params.id}).then(res=>console.log(res)).catch(err=>console.log(err))
                 console.log("saved")
                 console.log(product)
                 res.json(product)

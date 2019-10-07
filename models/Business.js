@@ -38,8 +38,8 @@ const NewBusiness = new Schema({
   },
   CompanyBio: {
     type: String,
-    minlength: 300,
-    maxlength: 600
+    minlength: 400,
+    maxlength: 800
   },
   CompanyWebsite: {
     type: String,

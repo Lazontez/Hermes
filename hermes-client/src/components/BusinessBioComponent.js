@@ -56,13 +56,14 @@ class CompanyBio extends React.Component {
 
         return (
             <div>
-                <div className="jumbotron" style={{ "height": "350px", "backgroundColor": "white", "borderBottom": "1px solid black", "padding": "50px", "backgroundImage": "linear-gradient(to top,gray 0% ,white 80%)" }}>
+                <div className="jumbotron" style={{ "backgroundColor": "white", "borderBottom": "1px solid black", "padding": "50px", "backgroundImage": "linear-gradient(to top,gray 0% ,white 80%)" }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-4">
                                 <img style={{ "float": "left", "width": "100%" }} alt="Company View" src="https://picsum.photos/250/150"></img>
                             </div>
                             <div id="companyBio" className="col-md-8">
+                                <h3>{this.state.companyData.BusinessName}</h3>
                                 <h6>CompanyBio</h6>
                                 <p>{this.state.companyData.CompanyBio}</p>
 

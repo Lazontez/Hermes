@@ -8,7 +8,6 @@ class CompanyBio extends React.Component {
     }
 
     getPosition() {
-        const that = this
         if (navigator.geolocation) {
  
             navigator.geolocation.getCurrentPosition((position) => {

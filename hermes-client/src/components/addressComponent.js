@@ -1,7 +1,4 @@
 import React from "react";
-import axios from "axios";
-import { timingSafeEqual } from "crypto";
-
 //*** This is the page that'll display the distance between to points given through props and function to get the location of the client */
 class milesAwayComponent extends React.Component {
 
@@ -17,7 +14,6 @@ class milesAwayComponent extends React.Component {
  
     //Function to get the location of the client and update the state of the loggedInLatt and loggedInLong to the positions recieved back
     getPosition() {
-        const that = this
         if (navigator.geolocation) {
  
             navigator.geolocation.getCurrentPosition((position) => {

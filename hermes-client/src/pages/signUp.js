@@ -4,9 +4,6 @@ import SignUpContent from "../components/signUpContent"
 
 class SignUp extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
     componentDidMount() {
         console.log("sign up page mounted")
     }

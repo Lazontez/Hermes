@@ -3,12 +3,6 @@ import UserSignUp from "../components/authenticationComponents/userSignUp"
 import Navbar from "../components/navbarComponents/navbar"
 
 class UserSignIn extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-
-
     render() {
         return (
             <div>

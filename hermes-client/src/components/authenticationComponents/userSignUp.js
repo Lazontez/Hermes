@@ -1,13 +1,9 @@
 import React from "react";
 import Axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 class userSignUp extends React.Component {
-    constructor(props) {
-        super(props)
-
-    }
     state = {
         isSignedUp: false,
         usernameInput: "",
@@ -15,11 +11,11 @@ class userSignUp extends React.Component {
     }
     handleChangedPwInput = (event) => {
         console.log(event.target.value)
-        this.setState({ passwordInput: event.target.value }, console.log(this.state))
+        this.setState({ passwordInput: event.target.value })
     }
     handleChangedUserNameInput = (event) => {
         console.log(event.target.value)
-        this.setState({ usernameInput: event.target.value }, console.log(this.state))
+        this.setState({ usernameInput: event.target.value })
     }
     createNewUser = (event) => {
         event.preventDefault()

@@ -7,7 +7,6 @@ const navbarStyles = {
 
 }
 const navbarHeaderCss = {
-    // "margin-left" : "400px" ,
     "color": "#df8026",
     "textDecoration": "line-through",
     "fontFamily": " 'Bangers' , cursive"
@@ -19,14 +18,21 @@ class Navbar extends React.Component {
         signedIn : false
      }
 
+    UNSAFE_componentWillMount = ()=>{
+        let gateKeeper = sessionStorage.getItem("jwt")
+        if(gateKeeper != undefined || gateKeeper != null){
+            console.log("hello")
+            this.setState({signedIn : true})
+        }
+
+    }
     componentDidMount = () => {
-        const gateKeeper = sessionStorage.getItem("jwt")
-        // console.log(gateKeeper)
+        let gateKeeper = sessionStorage.getItem("jwt")
         axios.get("/api/mybusiness", { headers: { Authorization: `JWT ${gateKeeper}` } }).then((data) => {
-            // console.log("DATA COMING........")
             if(data.data.usersBusiness !== null && data.data.usersBusiness !== undefined){
-            this.setState({usersBusiness : data.data.usersBusiness , signedIn : true})
+            this.setState({usersBusiness : data.data.usersBusiness})
             }
+            
         }).catch((err) => { console.log(err) })
 
     }
@@ -38,7 +44,7 @@ class Navbar extends React.Component {
                 <div style={{ "height": "20px", "backgroundColor": "rgb(223, 128, 38)", "textAlign": "right" }}></div>
                 <nav className="navbar navbar-dark" style={navbarStyles}>
                     <a className="navbar-brand" href="/">
-                        <img src="/images/Hermes Logo.png" width="70" height="70" alt="" />
+                        <img src="" width="70" height="70" alt="" />
                     </a>
                     <a className="navbar-brand" href="/" style={navbarHeaderCss}><h1>VITAL</h1></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

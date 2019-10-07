@@ -19,8 +19,8 @@ const NewBusiness = new Schema({
   //[longitude , latitude]
   location: {
     type: {
-      type: String, // Don't do `{ location: { type: String } }`
-      enum: ['Point'], // 'location.type' must be 'Point'
+      type: String, 
+      enum: ['Point'], 
       default : 'Point'
     },
     coordinates: {
@@ -32,14 +32,14 @@ const NewBusiness = new Schema({
   Niche: {
     type: String,
     required: true,
-    minlength: 1,
-    maxlength: 3
+    // minlength: 1,
+    // maxlength: 3
 
   },
   CompanyBio: {
     type: String,
     minlength: 300,
-    maxlength: 500
+    maxlength: 600
   },
   CompanyWebsite: {
     type: String,

@@ -1,13 +1,10 @@
 import React from "react";
 import Axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 class userSignUp extends React.Component {
-    constructor(props) {
-        super(props)
-
-    }
+    
     state = {
         loggedIn: false,
         usernameInput: "",
@@ -33,25 +30,11 @@ class userSignUp extends React.Component {
             .then((res) => {
                 this.setState({ loggedIn: true })
                 sessionStorage.setItem("jwt", res.data.token)
-                // const user_ID = res.data._someData.user.usersbusiness[0]._id      
-
-                // const dataAuthStatus = res.data.auth
-                // const isAunthenticated = sessionStorage.getItem("isAuthenticated")
-                //check to see if the authentication status from the database call is true 
-                //     if(dataAuthStatus !== false){
-                //      sessionStorage.setItem("isAuthenticated" , true )
-                //      sessionStorage.setItem("not_id" , user_ID)
-                //   }else if(dataAuthStatus !== true){
-                //       sessionStorage.removeItem("_id")
-                //       alert("We where not able to authenticate you. Check your password")
-                //     }
-                //if it is true turn the session storage vale isAuthenticated to true
-
             })
             .catch(err => console.log(err))
     }
     render() {
-        if (this.state.loggedIn != true) {
+        if (this.state.loggedIn !== true) {
             return (
                 <div>
                     <div style={{ "paddingBottom": "2px" }}>

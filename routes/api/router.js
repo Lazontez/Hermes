@@ -37,6 +37,8 @@ lodo.route("/api/nearby/:long/:latt")
 //****This is the route that will allow you to create a business in the database */
 lodo.route("/api/business")
     .post((req, res) => {
+        console.log("1")
+        console.log(req.body)
         const newBusiness = new Businesses(req.body)
         newBusiness.save((err, product) => {
             if (err) {
@@ -50,6 +52,7 @@ lodo.route("/api/business")
             }
         });
     })
+
 lodo.route("/api/mybusiness")
 .get(jwtVerify.confirmToken, jwtVerify.verifyToken, (req, res) => {
     User.find({

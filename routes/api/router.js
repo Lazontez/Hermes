@@ -36,19 +36,25 @@ lodo.route("/api/nearby/:long/:latt")
 // "/api/business"
 //****This is the route that will allow you to create a business in the database */
 lodo.route("/api/business")
-    .post((req, res) => {
-        console.log("1")
-        console.log(req.body)
+    .post(jwtVerify.confirmToken, jwtVerify.verifyToken,(req, res) => {
         const newBusiness = new Businesses(req.body)
         newBusiness.save((err, product) => {
             if (err) {
-                throw err
+                console.error(err)
+                res.json(err)
             }
             else {
-                User.findOne({_id : req.params.id}).then(res=>console.log(res)).catch(err=>console.log(err))
-                console.log("saved")
-                console.log(product)
-                res.json(product)
+                console.log("new business saved this is the request paramaters")
+                 console.log(req.params)
+                 User.findOne(
+                     {_id : req.params}
+                     ).then(res=>{
+                         console.log("we found the out about the user.....")
+                         res.usersbusiness.push(product._id)
+                         res.save()
+                        }
+                     ).catch(err=>console.log(err))
+                 res.json(product)
             }
         });
     })
@@ -82,8 +88,6 @@ lodo.route("/api/business/:id")
         Businesses.find({
             _id: req.params.id
         }).then((results) => {
-            // console.log("TYPE: GET &&& LOCATION: /api/business/:id")
-            console.log("FOUND " + results + " businesses");
             res.json(results);
         }).catch((err) => {
             console.log(err);
@@ -138,7 +142,6 @@ lodo.route("/api/getDistanceBetween/:loggedInLatt/:loggedInLong/:bLatt/:bLong")
                 + "&key=" + process.env.APIKEY)
             .then(results => {
                 // console.log(res.data)
-                //Set the state of miles away to the results from the api call
                 res.json(results.data.resourceSets[0].resources[0].results[0])
             })
             //Exception Handling

@@ -33,6 +33,7 @@ module.exports = {
         });
       } else {
         req.params = authData.id
+        console.log(authData)
         next();
       }
     });

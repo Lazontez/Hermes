@@ -32,8 +32,8 @@ class SignUpContent extends React.Component {
                     CompanyWebsite: that.state.inputCompanyWebsite
                 }
                 console.log(generatedPoints)
-                // const gateKeeper = sessionStorage.getItem("jwt")
-                axios.post("/api/business", business).then(res => {
+                const gateKeeper = sessionStorage.getItem("jwt")
+                axios.post("/api/business", business , { headers: { Authorization: `JWT ${gateKeeper}` } }).then(res => {
                      console.log(res.data)
                      that.setState({newBusinessId:res.data._id,businessSubmitted : true})
                  }).catch(err => console.log(err))

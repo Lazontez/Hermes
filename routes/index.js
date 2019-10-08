@@ -1,13 +1,13 @@
-// const path = require("path");
-// const router = require("express").Router();
-// const apiRoutes = require("./api");
+const path = require("path");
+const lodo = require("express").Router();
+const apiRoutes = require("./api/router");
 
-// // API Routes
-// router.use("/api", apiRoutes);
+// API Routes
+lodo.use(apiRoutes);
 
-// // If no API routes are hit, send the React app
-// router.use(function(req, res) {
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-// });
+// If no API routes are hit, send the React app
+lodo.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../hermes-client/build/index.html"));
+});
 
-// module.exports = router;
+module.exports = lodo;

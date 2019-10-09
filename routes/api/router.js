@@ -17,10 +17,8 @@ console.log("inside the routes")
 //****This is the api that will show the local business feed  */
 lodo.route("/api/nearby/:long/:latt")
     .get((req, res) => {
-        // req.params.long
-        const long = -86.78502
-        const latt = 36.15222
-        // req.params.latt
+        const long = req.params.long
+        const latt = req.params.latt
         Businesses.find({
             location: {
                 $near: {

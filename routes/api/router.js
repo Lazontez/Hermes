@@ -4,6 +4,11 @@ const axios = require('axios');
 const jwt = require("jsonwebtoken");
 const jwtVerify = require("../../config/jwt");
 const User = require("../../models/User");
+const upload = require("../services/fileUpload.js")
+
+
+
+
 require('dotenv').config();
 
 
@@ -12,8 +17,10 @@ console.log("inside the routes")
 //****This is the api that will show the local business feed  */
 lodo.route("/api/nearby/:long/:latt")
     .get((req, res) => {
-        const long = req.params.long
-        const latt = req.params.latt
+        // req.params.long
+        const long = -86.78502
+        const latt = 36.15222
+        // req.params.latt
         Businesses.find({
             location: {
                 $near: {
@@ -36,7 +43,7 @@ lodo.route("/api/nearby/:long/:latt")
 // "/api/business"
 //****This is the route that will allow you to create a business in the database */
 lodo.route("/api/business")
-    .post(jwtVerify.confirmToken, jwtVerify.verifyToken,(req, res) => {
+    .post(jwtVerify.confirmToken, jwtVerify.verifyToken, (req, res) => {
         const newBusiness = new Businesses(req.body)
         newBusiness.save((err, product) => {
             if (err) {
@@ -45,45 +52,74 @@ lodo.route("/api/business")
             }
             else {
                 console.log("new business saved this is the request paramaters")
-                 console.log(req.params)
-                 User.findOne(
-                     {_id : req.params}
-                     ).then(res=>{
-                         console.log("we found the out about the user.....")
-                         res.usersbusiness.push(product._id)
-                         res.save()
-                        }
-                     ).catch(err=>console.log(err))
-                 res.json(product)
+                console.log(req.params)
+                User.findOne(
+                    { _id: req.params }
+                ).then(res => {
+                    console.log("we found this out about the user.....")
+                    res.usersbusiness.push(product._id)
+                    res.save()
+                }
+                ).catch(err => console.log(err))
+                res.json(product)
             }
         });
     })
+// Route to send a image file to server
+lodo.route("/api/upload")
+  .post( ( req, res ) => {
+    console.log(req.body.businessId)
+    const uploadImage = upload.single("image")
+        uploadImage( req, res, ( error ) => {
+          // console.log( 'requestOkokok', req.file );
+          // console.log( 'error', error );
+          if( error ){
+           console.log( 'errors', error );
+           res.json( { error: error } );
+          } else {
+           // If File not found
+           if( req.file === undefined ){
+            console.log( 'Error: No File Selected!' );
+            res.json( 'Error: No File Selected' );
+           } else {
+            // If Success
+            const imageName = req.file.key;
+            const imageLocation = req.file.location;
 
+        // Save the file name into database into profile model
+        res.json( {
+             image: imageName,
+             location: imageLocation
+            } );
+           }
+          }
+         });
+        });
 lodo.route("/api/mybusiness")
-.get(jwtVerify.confirmToken, jwtVerify.verifyToken, (req, res) => {
-    User.find({
-        _id: req.params
-    }).then((results) => {
-        console.log("FOUND " + results[0].usersbusiness[0] + " businesses");
-        res.json({usersBusiness : results[0].usersbusiness[0]});
-    }).catch((err) => {
-        console.log(err);
-        res.send(err);
+    .get(jwtVerify.confirmToken, jwtVerify.verifyToken, (req, res) => {
+        User.find({
+            _id: req.params
+        }).then((results) => {
+            console.log("FOUND " + results[0].usersbusiness[0] + " businesses");
+            res.json({ usersBusiness: results[0].usersbusiness[0] });
+        }).catch((err) => {
+            console.log(err);
+            res.send(err);
+        });
+    })
+    // This will be to delete a business
+    .delete((req, res) => {
+        const id = req.params.id
+        Businesses.deleteOne({ _id: id }, (err, result) => {
+            if (err) { res.send(err) }
+            else { console.log(result); res.send(result) }
+        });
+        console.log("TYPE: DELETE &&& LOCATION: /api/business/:id")
     });
-})
-// This will be to delete a business
-.delete((req, res) => {
-    const id = req.params.id
-    Businesses.deleteOne({ _id: id }, (err, result) => {
-        if (err) { res.send(err) }
-        else { console.log(result); res.send(result) }
-    });
-    console.log("TYPE: DELETE &&& LOCATION: /api/business/:id")
-});
 //  "/api/business/:id"
 //****This the route that will be used for showing a specific businesses page */
 lodo.route("/api/business/:id")
-    .get( (req, res) => {
+    .get((req, res) => {
         console.log()
         Businesses.find({
             _id: req.params.id
@@ -98,7 +134,7 @@ lodo.route("/api/business/:id")
 //  "/api/business/:id"
 //****This the route that will be used for showing a specific businesses page */
 lodo.route("/api/business/:id")
-    .get( (req, res) => {
+    .get((req, res) => {
         const id = req.params.id
         Businesses.find({
             _id: id

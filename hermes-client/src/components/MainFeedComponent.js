@@ -48,7 +48,7 @@ class MainFeed extends React.Component {
         const mediaCardCss = {
             "marginTop":"15px",
             "background": "white",
-            "marginLeft": "-25px",
+            "marginLeft": "-150px",
             "marginRight": "25px",
             "borderColor": "black",
             "borderStyle": "solid",
@@ -65,7 +65,7 @@ class MainFeed extends React.Component {
             this.state.data.map((data) => {
                 return (
                     <span ><div id={data._id} className="media" style={mediaCardCss}>
-                        <img src="https://picsum.photos/64/64" className="mr-3" alt="..." />
+                        <img src={data.businessPicture} width="20%" height="20%" className="mr-3" alt="..." />
                         {/* <i class='fas fa-city' style='font-size:36px'></i> */}
 
                         {/* <div>{data.CompanyWebsite}</div> */}

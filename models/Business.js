@@ -10,6 +10,10 @@ const NewBusiness = new Schema({
     required: true,
     unique: false
   },
+  businessPicture:{
+      type : String ,
+      default : "https://picsum.photos/250/150"
+  },
   userId: [
     {
       type: Schema.Types.ObjectId,

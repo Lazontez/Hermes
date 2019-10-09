@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class SignUpContent extends React.Component {
 
@@ -15,16 +15,46 @@ class SignUpContent extends React.Component {
         inputAddress: "",
         inputNiche: "",
         inputCompanyBio: "",
-        inputCompanyWebsite: ""
+        inputCompanyWebsite: "",
+        selectedFile: null
+
     }
+    submitPicture = (cb) => {
+        const image = new FormData()
+        if (this.state.selectedFile) {
+            image.append('image', this.state.selectedFile, this.state.selectedFile.name)
+        }
+
+
+        axios.post("/api/upload", image, {
+            headers: {
+                'accept': 'application/json',
+                'Accept-Language': 'en-US,en;q=0.8',
+                'Content-Type': `multipart/form-data; boundary=${image._boundary}`
+            },
+        }).then((res) => {
+            console.log("was success")
+            return cb(res)
+        }).catch(err => console.log(err))
+    }
+    imageChangedHandler = (event) => {
+        event.preventDefault()
+        console.log(event.target.files[0])
+        this.setState({ selectedFile: event.target.files[0] }, console.log(this.state))
+
+    };
+
+
     handleSubmit = (event) => {
         event.preventDefault()
-        const that = this
-        axios.get("http://dev.virtualearth.net/REST/v1/Locations/US/" + this.state.inputState + "/" + this.state.inputCity + "/" + this.state.inputAddress + "?&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
+        this.submitPicture((info)=>{
+            console.log(info)
+            axios.get("http://dev.virtualearth.net/REST/v1/Locations/US/" + this.state.inputState + "/" + this.state.inputCity + "/" + this.state.inputAddress + "?&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
             .then((data) => {
-                const generatedPoints = [data.data.resourceSets[0].resources[0].point.coordinates[1] , data.data.resourceSets[0].resources[0].point.coordinates[0] ]
+                const generatedPoints = [data.data.resourceSets[0].resources[0].point.coordinates[1], data.data.resourceSets[0].resources[0].point.coordinates[0]]
                 const business = {
                     BusinessName: this.state.inputBusinessName,
+                    businessPicture : info.data.location ,
                     //[longitude , latitude]
                     location: { coordinates: generatedPoints },
                     Niche: that.state.inputNiche,
@@ -33,12 +63,15 @@ class SignUpContent extends React.Component {
                 }
                 console.log(generatedPoints)
                 const gateKeeper = sessionStorage.getItem("jwt")
-                axios.post("/api/business", business , { headers: { Authorization: `JWT ${gateKeeper}` } }).then(res => {
-                     console.log(res.data)
-                     that.setState({newBusinessId:res.data._id,businessSubmitted : true})
-                 }).catch(err => console.log(err))
+                axios.post("/api/business", business, { headers: { Authorization: `JWT ${gateKeeper}` } }).then(res => {
+                    console.log(res.data)
+                    that.setState({ newBusinessId: res.data._id, businessSubmitted: true })
+                }).catch(err => console.log(err))
                 console.log(business)
             }).catch((err) => { console.error(err) })
+        })
+        const that = this
+        
     }
     handleInputChange = (event) => {
         const stateKey = event.target.getAttribute("id")
@@ -157,15 +190,24 @@ class SignUpContent extends React.Component {
                                 The company bio must be between 400 to 800 characters.
                         </small>
                         </div>
+                        <div className="mb-3">
+                            <label >Please Upload an image to represent your business.</label>
+                            <input type="file" onChange={this.imageChangedHandler} />
+                            <small id="passwordHelpBlock" style={{ "color": "#" }} className="form-text text-muted">
+                                <div>Character Count: {this.state.inputCompanyBio.length}</div>
+                                The company bio must be between 400 to 800 characters.
+                        </small>
+                        </div>
                         <button type="submit" style={{ "backgroundColor": "black", "color": "#df8026" }} data-toggle="modal" className="btn">Sign Up</button>
-                        
+
 
                     </form >
                 </div>
 
             )
-        }else if(this.state.businessSubmitted === true && this.state.newBusinessId !== ""){
-            return(<Redirect to={"/business/"+this.state.newBusinessId} />)
+        } 
+        else if (this.state.businessSubmitted === true && this.state.newBusinessId !== "") {
+            return (<Redirect to={"/business/" + this.state.newBusinessId} />)
         }
 
     }

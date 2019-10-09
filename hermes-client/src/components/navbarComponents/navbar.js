@@ -1,5 +1,8 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
+import NewBusiness from "./newBusinessLink"
+import NewBusinessLink from "./newBusinessLink";
+
 
 const navbarStyles = {
     "background": "black",
@@ -18,6 +21,7 @@ class Navbar extends React.Component {
         signedIn : false
      }
 
+  
     UNSAFE_componentWillMount = ()=>{
         let gateKeeper = sessionStorage.getItem("jwt")
         if(gateKeeper != undefined || gateKeeper != null){
@@ -32,7 +36,6 @@ class Navbar extends React.Component {
             if(data.data.usersBusiness !== null && data.data.usersBusiness !== undefined){
             this.setState({usersBusiness : data.data.usersBusiness})
             }
-            
         }).catch((err) => { console.log(err) })
 
     }
@@ -65,7 +68,8 @@ class Navbar extends React.Component {
                                 
                             </li> */}
                             <li className="nav-item">
-                                <a className="nav-link" href={(this.state.signedIn === false)?"/authentication/login" : "/business/signup"} style={{ "color": "white", "marginLeft": "-50px" }}>New Business</a>
+                                <a className="nav-link" href={(this.state.signedIn === true)?"/business/signup" : "/authentication/login"} style={{ "color": "white", "marginLeft": "-50px" }}>New Business</a>
+
                             </li>
 
                         </ul>

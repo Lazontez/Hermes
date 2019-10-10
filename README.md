@@ -1,6 +1,7 @@
 # Vital
 Local business social discovery app built with the MERN Stack. This is an app that allows users to view local businesses within 30 miles of where they 
 are currently located. It is designed with the idea of spreading local businesses across the web. Small Business owner have the capabilty to create a business account so users can be made aware of there business.
+![Vital= Designed for locals](hermes-client\public\images\hermesScreenshot.PNG)
 
 ## Getting Started
 

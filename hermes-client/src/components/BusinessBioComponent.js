@@ -60,7 +60,7 @@ class CompanyBio extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-4">
-                                <img style={{ "float": "left", "width": "100%" }} alt="Company View" src={this.state.companyData.businessPicture}></img>
+                                <img style={{ "float": "left"}} width="350px" height="200px" alt="Company View" src={this.state.companyData.businessPicture}></img>
                             </div>
                             <div id="companyBio" className="col-md-8">
                                 <h3>{this.state.companyData.BusinessName}</h3>

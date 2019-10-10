@@ -68,7 +68,7 @@ class Navbar extends React.Component {
                                 
                             </li> */}
                             <li className="nav-item">
-                                <a className="nav-link" href={(this.state.signedIn === true)?"/business/signup" : "/authentication/login"} style={{ "color": "white", "marginLeft": "-50px" }}>New Business</a>
+                                <a className="nav-link" href={(sessionStorage.getItem("rights") === "true")?"/business/signup" : "/authentication/login"} style={{ "color": "white", "marginLeft": "-50px" }}>New Business</a>
 
                             </li>
 

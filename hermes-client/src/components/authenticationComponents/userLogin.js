@@ -28,10 +28,14 @@ class userSignUp extends React.Component {
         Axios
             .post("/loginUser", newUser)
             .then((res) => {
+                sessionStorage.setItem("rights" , true)
                 this.setState({ loggedIn: true })
                 sessionStorage.setItem("jwt", res.data.token)
             })
-            .catch(err => console.log(err))
+            .catch(err =>{
+                alert("something went wrong refresh and try again") 
+                console.log(err)
+            })
     }
     render() {
         if (this.state.loggedIn !== true) {

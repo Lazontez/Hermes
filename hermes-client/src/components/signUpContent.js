@@ -49,7 +49,7 @@ class SignUpContent extends React.Component {
         event.preventDefault()
         this.submitPicture((info)=>{
             console.log(info)
-            axios.get("http://dev.virtualearth.net/REST/v1/Locations/US/" + this.state.inputState + "/" + this.state.inputCity + "/" + this.state.inputAddress + "?&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
+            axios.get("https://dev.virtualearth.net/REST/v1/Locations/US/" + this.state.inputState + "/" + this.state.inputCity + "/" + this.state.inputAddress + "?&key=AvP9Fdpniz7FJjc5uJW_0WnDvumO9QAX8p9Sjg2T1jTwzMmXin5LuAuSVAMJVY6L")
             .then((data) => {
                 const generatedPoints = [data.data.resourceSets[0].resources[0].point.coordinates[1], data.data.resourceSets[0].resources[0].point.coordinates[0]]
                 const business = {

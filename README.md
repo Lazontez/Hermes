@@ -3,9 +3,9 @@ Local business social discovery app built with the MERN Stack. This is an app th
 are currently located. It is designed with the idea of spreading local businesses across the web. Small Business owner have the capabilty to create a business account so users can be made aware of there business.
 
 
+<img src="hermes-client/public/images/hermesScreenshot.PNG" alt="Your image title" width="250"/>
 
-![Vital= Designed for locals](hermes-client/public/images/hermesScreenshot.PNG {width=200px height=250px})
-
+<!--  .
 ## Getting Started
 
 To Get started do the NPM INSTALL command in the root directory once you have cloned the project to your local machine.

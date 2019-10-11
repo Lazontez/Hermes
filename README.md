@@ -2,8 +2,10 @@
 Local business social discovery app built with the MERN Stack. This is an app that allows users to view local businesses within 30 miles of where they 
 are currently located. It is designed with the idea of spreading local businesses across the web. Small Business owner have the capabilty to create a business account so users can be made aware of there business.
 
-
-<img src="hermes-client/public/images/hermesScreenshot.PNG" alt="Local Feed Page" width="350" height="200"/>
+<span>
+<img src="hermes-client/public/images/hermesScreenshot.PNG" style="float: left" alt="Local Feed Page" width="350" height="200"/>
+<img src="hermes-client/public/images/hermesScreenshotTwo.PNG" style="" alt="Business Page" width="350" height="200"/>
+</span>
 
 <!-- ![Vital= Designed for locals](hermes-client/public/images/hermesScreenshot.PNG ){width=200px height=250px} -->
 

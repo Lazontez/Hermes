@@ -44,6 +44,7 @@ npm start
 
 * [React]- Used for building components and rendering elements
 * [Express] - Framework used with NodeJS
+* [Aws] - File Storage
 * [MongoDB] - Database Used
 * [Bootstrap] - StyleSheet Library
 * [BingMaps] - Used for making GeoSpatial calculations

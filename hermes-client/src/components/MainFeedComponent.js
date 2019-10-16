@@ -68,7 +68,7 @@ class MainFeed extends React.Component {
             return (
                 <span >
                     <div className="media" style={mediaCardCss}>
-                        {/* <img  width="250px" height="200px" className="mr-3" alt="..." /> */}
+                        <img  width="250px" src="./images/images.png" height="200px" className="mr-3" alt="error" />
                         {/* <i class='fas fa-city' style='font-size:36px'></i> */}
 
                         {/* <div>{data.CompanyWebsite}</div> */}

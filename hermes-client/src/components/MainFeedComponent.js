@@ -5,22 +5,24 @@ class MainFeed extends React.Component {
     state = {
         data: []
     };
-    
+
     componentDidMount() {
         this.getPosition()
     }
 
-    getPosition(){
+    getPosition() {
         const that = this
-        if(navigator.geolocation){
+        if (navigator.geolocation) {
 
-            navigator.geolocation.getCurrentPosition((position)=>{
+            navigator.geolocation.getCurrentPosition((position) => {
                 const lattitude = position.coords.latitude
                 const longitude = position.coords.longitude
                 that.retrieveLocal(longitude, lattitude)
+                console.log()
+                console.log(this.state.data)
             })
         }
-        else{
+        else {
             alert("Please allow us to use location for main functionality of App")
         }
     }
@@ -28,6 +30,8 @@ class MainFeed extends React.Component {
     retrieveLocal = (long, latt) => {
         //Bandaid Fix to Scoping Issue when calling this.setState inside then axios call
         const that = this
+        // 114.7420
+        // 44.0682
         //Make a axios GET call to the api/business/:long/:latt
         axios.get("api/nearby/" + long + "/" + latt).then(function (res) {
             console.log("Searching for api/nearby")
@@ -46,7 +50,7 @@ class MainFeed extends React.Component {
     }
     render() {
         const mediaCardCss = {
-            "marginTop":"15px",
+            "marginTop": "15px",
             "background": "white",
             "marginLeft": "-150px",
             "marginRight": "25px",
@@ -60,24 +64,46 @@ class MainFeed extends React.Component {
 
 
         }
-        //run a map function through the state.data aray return the wanted data to the page with the given HTML elements
-        return (
-            this.state.data.map((data) => {
-                return (
-                    <span ><div id={data._id} className="media" style={mediaCardCss}>
-                        <img src={data.businessPicture} width="250px" height="200px" className="mr-3" alt="..." />
+        if (this.state.data.length === 0) {
+            return (
+                <span >
+                    <div className="media" style={mediaCardCss}>
+                        {/* <img  width="250px" height="200px" className="mr-3" alt="..." /> */}
                         {/* <i class='fas fa-city' style='font-size:36px'></i> */}
 
                         {/* <div>{data.CompanyWebsite}</div> */}
                         <div className="media-body" style={{ "fontSize": "12px" }}>
-                           <a style={{"color":"black"}}href={"/business/"+data._id}><h5 className="mt-0">{data.BusinessName}</h5></a>  
-                            <span style={{"fontFamily": "'Fira Sans', sans-serif"}}>{data.CompanyBio}</span>
+                            <h5 className="mt-0">VITAL-TOWN MESSAGE</h5>
+                            <span style={{ "fontFamily": "'Fira Sans', sans-serif" }}>
+                                No Local Businesses Found Within 35 Miles Of Your location.
+                                Search For Graves Fitness in the search menu to learn about there business.
+                                
+                            </span>
                         </div>
                     </div>
-                        <hr style={{"background":"black" , "width":"400px"}}></hr>
-                    </span>)
-            })
-        );
+                </span >
+            )
+
+        } else {
+            //run a map function through the state.data aray return the wanted data to the page with the given HTML elements
+            return (
+                this.state.data.map((data) => {
+                    return (
+                        <span ><div id={data._id} className="media" style={mediaCardCss}>
+                            <img src={data.businessPicture} width="250px" height="200px" className="mr-3" alt="..." />
+                            {/* <i class='fas fa-city' style='font-size:36px'></i> */}
+
+                            {/* <div>{data.CompanyWebsite}</div> */}
+                            <div className="media-body" style={{ "fontSize": "12px" }}>
+                                <a style={{ "color": "black" }} href={"/business/" + data._id}><h5 className="mt-0">{data.BusinessName}</h5></a>
+                                <span style={{ "fontFamily": "'Fira Sans', sans-serif" }}>{data.CompanyBio}</span>
+                            </div>
+                        </div>
+                            <hr style={{ "background": "black", "width": "400px" }}></hr>
+                        </span>)
+                })
+            );
+        }
     }
 }
 

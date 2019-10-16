@@ -47,7 +47,7 @@ class SearchComponent extends React.Component {
             <span>
                 <form>
                     <div className="form-group row">
-                        <div className="input-group mb-12" style={searchAreaCss}>
+                        <div className="input-group mb-12" style={searchAreaCss}>                                                                                                
                             <div className="input-group-prepend" >
                                 <span className="input-group-text" style={{ "borderBottomLeftRadius": "50px", "borderTopLeftRadius": "50px", "backgroundColor": "#df8026" }} id="basic-addon1"><i className="fas fa-search" ></i></span>
                             </div>

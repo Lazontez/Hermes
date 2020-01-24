@@ -51,7 +51,7 @@ class SearchComponent extends React.Component {
                             <div className="input-group-prepend" >
                                 <span className="input-group-text" style={{ "borderBottomLeftRadius": "50px", "borderTopLeftRadius": "50px", "backgroundColor": "#df8026" }} id="basic-addon1"><i className="fas fa-search" ></i></span>
                             </div>
-                            <input type="text" className="form-control" placeholder="Search For A Business" search={this.state.searchRequest} onChange={this.handleSearchRequest} style={{ "borderTopRightRadius": "50px", "borderBottomRightRadius": "50px" }} aria-label="Business Name" aria-describedby="basic-addon1" />
+                            <input type="text" className="form-control" name="searchBusiness" placeholder="Search For A Business" search={this.state.searchRequest} onChange={this.handleSearchRequest} style={{ "borderTopRightRadius": "50px", "borderBottomRightRadius": "50px" }} aria-label="Business Name" aria-describedby="basic-addon1" />
                         </div>
 
                     </div>
@@ -59,7 +59,7 @@ class SearchComponent extends React.Component {
 
                 <div className="resultsHeader">
                     <h5 style={resultsHeader}>Results</h5>
-                    <h6 style={{ "color": "white", "textAlign": "center" }}><div className="btn btn-secondary" onClick={this.callForBusiness}>{this.state.searchRequest}</div></h6>
+                    <h6 style={{ "color": "white", "textAlign": "center" }}><div className="btn btn-secondary" id="searchBusinessBtn" onClick={this.callForBusiness}>{this.state.searchRequest}</div></h6>
                 </div>
                 <div className="resultsDisplay">
                     {this.state.searchedData.map((data) => {

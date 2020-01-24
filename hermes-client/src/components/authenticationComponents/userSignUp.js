@@ -45,16 +45,16 @@ class userSignUp extends React.Component {
                     >
                         <div className="form-group col-md-12">
                             <label htmlFor="inputEmail4" >Username</label>
-                            <input type="text" className="form-control" id="businessnameInput" input={this.state.usernameInput} onChange={this.handleChangedUserNameInput} placeholder="Account Username" />
+                            <input type="text" className="form-control" name="accountUsername" id="businessnameInput" input={this.state.usernameInput} onChange={this.handleChangedUserNameInput} placeholder="Account Username" />
 
 
                             <label htmlFor="inputPassword4"  >Password</label>
-                            <input type="password" className="form-control" input={this.state.passwordInput} onChange={this.handleChangedPwInput} id="inputPassword4" placeholder="Password" />
+                            <input type="password" className="form-control" name="accountPw" input={this.state.passwordInput} onChange={this.handleChangedPwInput} id="inputPassword4" placeholder="Password" />
                             <label htmlFor="inputPassword4" >Confirm Password</label>
-                            <input type="password" className="form-control" confirmInput={this.state.passwordInput} id="confirmPwInput" placeholder="Confirm Password" />
+                            <input type="password" className="form-control" name="accountPwConfirm" confirmInput={this.state.passwordInput} id="confirmPwInput" placeholder="Confirm Password" />
                             <small>Already have an account? <a href="/authentication/login">Login</a></small>
                             <div>
-                            <button style={{ "marginTop": "5px" , "marginLeft":"5px" }} className="btn btn-dark" onClick={this.createNewUser}>Signup</button>
+                            <button style={{ "marginTop": "5px" , "marginLeft":"5px" }} id="signUpButton" className="btn btn-dark" onClick={this.createNewUser}>Signup</button>
                             </div>
                             {/* "/authentication/login" */}
                         </div>

@@ -51,14 +51,14 @@ class userSignUp extends React.Component {
                         >
                             <div className="form-group col-md-12">
                                 <label htmlFor="inputEmail4">Username</label>
-                                <input type="text" className="form-control" id="businessnameInput" input={this.state.usernameInput} onChange={this.handleChangedUserNameInput} placeholder="Account Username" />
+                                <input type="text" className="form-control" id="businessnameInput" name="loginName" input={this.state.usernameInput} onChange={this.handleChangedUserNameInput} placeholder="Account Username" />
 
 
                                 <label htmlFor="inputPassword4">Password</label>
-                                <input type="password" className="form-control" input={this.state.passwordInput} onChange={this.handleChangedPwInput} id="inputPassword4" placeholder="Password" />
+                                <input type="password" name="loginPw" className="form-control" input={this.state.passwordInput} onChange={this.handleChangedPwInput} id="inputPassword4" placeholder="Password" />
                                 <small>Are you new here? <a href="/authentication/signup">Sign-Up</a></small>
                                 <div>
-                                <button style={{ "marginTop": "5px" }} className="btn btn-dark" onClick={this.createNewUser}>Login</button>
+                                <button style={{ "marginTop": "5px" }} className="btn btn-dark" id="loginBtn" onClick={this.createNewUser}>Login</button>
                                 </div>
                             </div>
                         </div>

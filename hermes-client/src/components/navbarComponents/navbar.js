@@ -62,7 +62,7 @@ class Navbar extends React.Component {
                                 <a className="nav-link" href={"/business/"+this.state.usersBusiness} style={{ "color": "white", "marginLeft": "-50px" }}>Your Page</a>
                             </li>
                             <li className="nav-item">
-                               <span className="nav-link"><a href="/authentication/login" style={{ "color": "white", "marginLeft": "-50px" }}>Login</a> / <a  href="/authentication/signup" style={{ "color": "white"  }}>Sign-Up</a></span>
+                               <span className="nav-link"><a href="/authentication/login" style={{ "color": "white", "marginLeft": "-50px" }}>Login</a> / <a name="signupBusinessAccount" id="signup" href="/authentication/signup" style={{ "color": "white"  }}>Sign-Up</a></span>
                             </li>
                             {/* <li className="nav-item">
                                 

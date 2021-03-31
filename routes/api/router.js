@@ -12,7 +12,7 @@ const upload = require("../services/fileUpload.js")
 require('dotenv').config();
 
 
-console.log("inside the routes")
+console.log("YODI")
 // "/api/nearby"
 //****This is the api that will show the local business feed  */
 lodo.route("/api/nearby/:long/:latt")
@@ -30,10 +30,10 @@ lodo.route("/api/nearby/:long/:latt")
                 }
             }
         }).then((results) => {
-            console.log(results);
+            // console.log(results);
             res.json(results);
         }).catch((err) => {
-            console.log(err);
+            // console.log(err);
             res.send(err);
         });
         console.log("TYPE: GET &&& LOCATION: /api/nearby/")

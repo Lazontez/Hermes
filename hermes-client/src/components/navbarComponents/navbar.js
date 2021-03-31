@@ -47,7 +47,7 @@ class Navbar extends React.Component {
                 <div style={{ "height": "20px", "backgroundColor": "rgb(223, 128, 38)", "textAlign": "right" }}></div>
                 <nav className="navbar navbar-dark" style={navbarStyles}>
                     <a className="navbar-brand" href="/">
-                        <img src="" width="70" height="70" alt="" />
+                        {/* <img src="" width="70" height="70" alt="" /> */}
                     </a>
                     <a className="navbar-brand" href="/" style={navbarHeaderCss}><h1>VITAL</h1></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

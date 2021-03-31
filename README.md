@@ -56,7 +56,7 @@ npm start
 
 ## Versioning
 
-* Vol 1 
+* 0.1.0
 
 ## Authors
 

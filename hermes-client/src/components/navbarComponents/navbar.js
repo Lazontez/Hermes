@@ -59,7 +59,7 @@ class Navbar extends React.Component {
                                 <a className="nav-link" href="/" style={{ "color": "white", "marginLeft": "-50px" }}>Local Feed</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href={"/business/"+this.state.usersBusiness} style={{ "color": "white", "marginLeft": "-50px" }}>Your Page</a>
+                                <a className="nav-link" href={(this.state.usersBusiness === 'N/A' ? "/business/signup" : "/business/"+this.state.usersBusiness)} style={{ "color": "white", "marginLeft": "-50px" }}>Your Page</a>
                             </li>
                             <li className="nav-item">
                                <span className="nav-link"><a href="/authentication/login" style={{ "color": "white", "marginLeft": "-50px" }}>Login</a> / <a name="signupBusinessAccount" id="signup" href="/authentication/signup" style={{ "color": "white"  }}>Sign-Up</a></span>

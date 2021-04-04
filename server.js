@@ -5,9 +5,11 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const jwtSecret = require('./config/jwtConfig')
 
+require('dotenv').config()
 
 const PORT = process.env.PORT || 3001;
-const db = process.env.MONGODB_URI || "mongodb://localhost/HermesDataBase"
+const db =  "mongodb+srv://dbOwner:"+process.env.DB_WORD+"@hermes.u3vk8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+// "mongodb://localhost/HermesDataBase"
 const path = require("path")
 const passport = require("passport")
 require('./config/passport');

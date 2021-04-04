@@ -71,7 +71,7 @@ class CompanyBio extends React.Component {
                         </div>
                         <div className="subInfo" >
                             <div className="row" style={{ "marginLeft": "10px" }}>
-                                <div style={{ "color": "black" }}>Website: <a style={{ "color": "black" }} href={this.state.companyData.CompanyWebsite}>{this.state.companyData.CompanyWebsite}</a></div>
+                                <div style={{ "color": "black" }}>Website: <a target="blank" style={{ "color": "black" }} href={this.state.companyData.CompanyWebsite}>{this.state.companyData.CompanyWebsite}</a></div>
                             </div>
                             <div data={this.state.companyData} className="row" style={{ "marginLeft": "10px" }}>
                                 <AddressComponent milesAway={this.state.milesAway} />

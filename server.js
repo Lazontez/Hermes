@@ -7,7 +7,7 @@ const jwtSecret = require('./config/jwtConfig')
 
 
 const PORT = process.env.PORT || 3001;
-const db = process.env.DB_WORD|| "mongodb://localhost/HermesDataBase"
+const db = process.env.MONGODB_URI|| "mongodb://localhost/HermesDataBase"
 const path = require("path")
 const passport = require("passport")
 require('./config/passport');
@@ -25,6 +25,8 @@ if (process.env.NODE_ENV === "production") {
 
 
 app.post('/registerUser', (req, res, next) => {
+  console.log('1')
+  console.log(res)
   passport.authenticate('register', (err, user, info) => {
     if (err) {
       console.error("error here" + err);

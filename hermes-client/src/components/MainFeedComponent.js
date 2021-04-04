@@ -76,7 +76,7 @@ class MainFeed extends React.Component {
                             <h5 className="mt-0">VITAL-TOWN MESSAGE</h5>
                             <span style={{ "fontFamily": "'Fira Sans', sans-serif" }}>
                                 No Local Businesses Found Within 35 Miles Of Your location.
-                                Search For Graves Fitness in the search menu to learn about there business.
+                                Search For Press Play Studios in the search menu to learn about there business.
                                 
                             </span>
                         </div>

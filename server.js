@@ -32,7 +32,7 @@ app.post('/registerUser', (req, res, next) => {
       console.error("error here" + err);
     }
     if (info !== undefined) {
-      console.error(info.message);
+      console.error({"Here":info.message});
       res.status(403).send(info.message);
     } else {
       // eslint-disable-next-line no-unused-vars

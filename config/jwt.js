@@ -33,7 +33,7 @@ module.exports = {
         });
       } else {
         req.params = authData.id
-        console.log(authData)
+        console.log({"Auth DATA":authData})
         next();
       }
     });

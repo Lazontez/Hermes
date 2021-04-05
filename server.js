@@ -7,7 +7,7 @@ const jwtSecret = require('./config/jwtConfig')
 
 
 const PORT = process.env.PORT || 3001;
-const db = process.env.MONGODB_URI|| "mongodb://localhost/HermesDataBase"
+const db = process.env.MONGODB_URI || "mongodb://localhost/HermesDataBase"
 const path = require("path")
 const passport = require("passport")
 require('./config/passport');
@@ -26,13 +26,13 @@ if (process.env.NODE_ENV === "production") {
 
 app.post('/registerUser', (req, res, next) => {
   console.log('1')
-  console.log(res)
+  // console.log(res)
   passport.authenticate('register', (err, user, info) => {
     if (err) {
       console.error("error here" + err);
     }
     if (info !== undefined) {
-      console.error({"Here":info.message});
+      console.error({ "Here": info.message });
       res.status(403).send(info.message);
     } else {
       // eslint-disable-next-line no-unused-vars
@@ -55,21 +55,21 @@ app.post('/loginUser', (req, res, next) => {
       }
     } else {
       console.log(user)
-        // User.findOne({ username: req.body.username
-        // }).populate("usersbusiness").exec((err, user) => {
-        //   console.log(user);
-          const token = jwt.sign({ id: user.id }, jwtSecret.secret, {
-            expiresIn: 60 * 60,
-          });
-          res.status(200).send({
-            auth: true,
-            token ,
-            // _someData : {
-            //   user : user
-            // },
-            message: 'user found & logged in',
-          });
-        // });
+      // User.findOne({ username: req.body.username
+      // }).populate("usersbusiness").exec((err, user) => {
+      //   console.log(user);
+      const token = jwt.sign({ id: user.id }, jwtSecret.secret, {
+        expiresIn: 60 * 60,
+      });
+      res.status(200).send({
+        auth: true,
+        token,
+        // _someData : {
+        //   user : user
+        // },
+        message: 'user found & logged in',
+      });
+      // });
     }
   })(req, res, next);
 });
@@ -77,10 +77,15 @@ app.post('/loginUser', (req, res, next) => {
 // Api Routes
 app.use(routes);
 
-mongoose.connect(db, { useNewUrlParser: true }, (err) => { if (err) { console.log({"2. Here is the error" : err ,
-"3 Here is the value of db": db} )  } console.log('mongoose connected') });
+mongoose.connect(db, { useNewUrlParser: true }, (err) => {
+  if (err) {
+    console.log({
+      "2. Here is the error": err,
+      "3 Here is the value of db": db
+    })
+  }else{ console.log('mongoose connected') }});
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT http://localhost:${PORT} !`);
 });

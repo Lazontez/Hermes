@@ -77,7 +77,8 @@ app.post('/loginUser', (req, res, next) => {
 // Api Routes
 app.use(routes);
 
-mongoose.connect(db, { useNewUrlParser: true }, (err) => { if (err) { console.log({"2. Here is the error" : err} )  } console.log('mongoose connected') });
+mongoose.connect(db, { useNewUrlParser: true }, (err) => { if (err) { console.log({"2. Here is the error" : err ,
+"3 Here is the value of db": db} )  } console.log('mongoose connected') });
 
 // Start the API server
 app.listen(PORT, function() {

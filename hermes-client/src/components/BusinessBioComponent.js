@@ -15,7 +15,6 @@ class CompanyBio extends React.Component {
                 const latitude = position.coords.latitude
                 //Sets the state 
                 this.setState({loggedInLatt :latitude , loggedInLong : longitude} , console.log(this.state))
-                this.getCompanyInfo()
             })
         }
         else {
@@ -25,6 +24,7 @@ class CompanyBio extends React.Component {
 
     componentDidMount() {
         this.getPosition()
+        this.getCompanyInfo()
     }
 
     getCompanyInfo = () => {

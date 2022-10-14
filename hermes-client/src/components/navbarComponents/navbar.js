@@ -25,7 +25,8 @@ class Navbar extends React.Component {
     UNSAFE_componentWillMount = ()=>{
         let gateKeeper = sessionStorage.getItem("jwt")
         if(gateKeeper != undefined || gateKeeper != null){
-            console.log("hello")
+            console.log("hello +" + this.state)
+            
             this.setState({signedIn : true})
         }
 

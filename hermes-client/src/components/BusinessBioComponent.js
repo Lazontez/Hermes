@@ -23,8 +23,8 @@ class CompanyBio extends React.Component {
     }
 
     componentDidMount() {
-        this.getCompanyInfo()
         this.getPosition()
+        this.getCompanyInfo()
     }
 
     getCompanyInfo = () => {

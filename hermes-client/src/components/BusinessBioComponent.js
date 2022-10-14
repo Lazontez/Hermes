@@ -27,9 +27,8 @@ class CompanyBio extends React.Component {
 
     componentDidMount() {
         console.log("Component Has Mounted")
-        console.log(this.state)
         this.getPosition()
-        
+        this.getCompanyInfo()
     }
 
     getCompanyInfo = () => {

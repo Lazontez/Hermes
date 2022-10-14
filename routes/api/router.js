@@ -101,7 +101,7 @@ lodo.route("/api/mybusiness")
             console.log("FOUND " + results[0].usersbusiness[0] + " businesses");
             res.json({ usersBusiness: results[0].usersbusiness[0] });
         }).catch((err) => {
-            console.log('here i am)
+            console.log('here i am')
             console.log(err);
             res.send(err);
         });

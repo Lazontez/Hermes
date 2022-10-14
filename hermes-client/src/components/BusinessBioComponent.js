@@ -8,23 +8,26 @@ class CompanyBio extends React.Component {
     }
 
     getPosition() {
+        console.log("Get Position")
         if (navigator.geolocation) {
- 
             navigator.geolocation.getCurrentPosition((position) => {
                 const longitude = position.coords.longitude
                 const latitude = position.coords.latitude
                 //Sets the state 
                 this.setState({loggedInLatt :latitude , loggedInLong : longitude} , console.log(this.state))
+                this.getCompanyInfo()
             })
         }
         else {
+            console.log('No Position')
+            this.getCompanyInfo()
             alert("Please allow us to use location for main functionality of App")
         }
     }
 
     componentDidMount() {
         this.getPosition()
-        this.getCompanyInfo()
+        
     }
 
     getCompanyInfo = () => {

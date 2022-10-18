@@ -20,10 +20,17 @@ class SearchComponent extends React.Component {
     }
     callForBusiness = () => {
         const requestedBusiness = this.state.searchRequest
+        
+        if (requestedBusiness != ""){
         axios.get("/api/search/" + requestedBusiness).then((res) => {
             console.log("/api/search/" + requestedBusiness)
             this.setState({ searchedData: res.data }, () => { console.log("-----------"); console.log(this.state.searchedData) })
         }).catch(err => { console.log(err) })
+    }
+    else{
+        this.setState({ searchEmpty: true })
+        alert('You have not entered anything in the search field')
+    }
     }
 
     render() {
@@ -68,7 +75,6 @@ class SearchComponent extends React.Component {
                             <div name={data.BusinessName} className="card text-white bg-light mb-3">
                                 <div className="card-header" style={{ "color": "black",  }}><h5 style={{"float": "left"}}>{data.BusinessName}</h5> - <em style={{"display":"inline"}}className="card-title" style={{ "color": "black", "fontSize": "small" }}>{data.Niche}</em></div>
                                 <div className="card-body">
-
                                     <Link style={{"color":"black","marginRight":"25px"}}to={"/business/"+data._id }>View Page</Link>
                                     <a style={{"color":"black"}} href={data.CompanyWebsite}>Companies Website</a>
                                 </div>

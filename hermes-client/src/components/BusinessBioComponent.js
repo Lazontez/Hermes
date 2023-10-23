@@ -34,7 +34,6 @@ class CompanyBio extends React.Component {
     getCompanyInfo = () => {
         let id = this.props.userId
         axios.get("/api/business/" + id).then(res => {
-            console.log(res.data[0])
             // console.log(this)
             this.setState({ companyData: res.data[0] })
             //Business's Longitude

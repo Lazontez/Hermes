@@ -5,8 +5,6 @@ import SearchComponent from "../components/SearchComponent";
 const MainFeedBackgroundCSS = {
     
     "margin": "0px" ,
-    "overflowY": "scroll",
-    "height": "100%"
     
 }
 class Main extends React.Component{
@@ -19,7 +17,7 @@ class Main extends React.Component{
             <Navbar />
             <div className="container container-fluid" style={{"marginRight":"0px"}}>
                 <div className="mainPageFeed">
-                    <div className="row" style={{"height":"500px"}}>
+                    <div className="row" style={{}}>
                         <div className="col-sm-6 col-md-8">
                             <MainFeed />
                         </div>

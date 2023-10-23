@@ -49,6 +49,7 @@ class CompanyBio extends React.Component {
                     // console.log(res.data)
                     //Set the state of miles away to the results from the api call
                     console.log(res.data)
+                    console.log(this.state)
                     this.setState({milesAway : res.data.travelDistance})
                 })
                 //Exception Handling

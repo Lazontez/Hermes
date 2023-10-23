@@ -13,7 +13,6 @@
     "client": "cd hermes-client && npm run start",
     "install": "cd hermes-client && npm install",
     "build": "cd hermes-client && npm run build",
-    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",

@@ -5,7 +5,8 @@ import SearchComponent from "../components/SearchComponent";
 const MainFeedBackgroundCSS = {
     
     "margin": "0px" ,
-    "overflowY": "scroll"
+    "overflowY": "scroll",
+    "height": "100%"
     
 }
 class Main extends React.Component{

@@ -12,7 +12,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd hermes-client && npm run start",
     "install": "cd hermes-client && npm install",
-    "build": "cd hermes-client && npm run build",
+    "build": "cd hermes-client && npm run build"
   },
   "author": "",
   "license": "ISC",

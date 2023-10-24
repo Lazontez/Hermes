@@ -23,8 +23,8 @@ class SearchComponent extends React.Component {
         
         if (requestedBusiness != ""){
         axios.get("/api/search/" + requestedBusiness).then((res) => {
-            console.log("/api/search/" + requestedBusiness)
-            this.setState({ searchedData: res.data }, () => { console.log("-----------"); console.log(this.state.searchedData) })
+            res.data = 0 ? alert('No Results Found) : this.setState({ searchedData: res.data }, () => {
+            })
         }).catch(err => { console.log(err) })
     }
     else{
